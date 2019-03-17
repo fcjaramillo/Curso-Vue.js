@@ -10,8 +10,20 @@
 </head>
 <body>
     <div id="app">
-        Hola {{ nombre }}
-        <a :href = "url" target="blank"> {{ pagina }}</a> 
+        <template v-if="mostrar">
+                <h1 >Este es mi título</h1>
+                <h2 >Este es mi subtítulo</h2>
+                <a  :href = "url" target="blank"> {{ pagina }}</a> 
+                <!-- Hola {{ nombre }}  -->
+        </template>
+
+        <div v-show="mostrar">
+                <h1 >Este es mi título</h1>
+                <h2 >Este es mi subtítulo</h2>
+                <a  :href = "url" target="_blank"> {{ pagina }}</a> 
+                <!-- Hola {{ nombre }}  -->
+        </div>
+
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -21,7 +33,8 @@
             data:{
                 nombre: 'Fabián Camilo Jaramillo Ortiz',
                 url : 'https:/google.com',
-                pagina: 'Ir a Google'
+                pagina: 'Ir a Google',
+                mostrar: true
             }
         })
     </script>
