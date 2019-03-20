@@ -10,19 +10,12 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" name="nombre" placeholder="ingrese su nombre" v-model="nombre">
-        <p> Tu nombre en Mayuscula es {{ nombre | uppercase }}</p>
-
         <form @submit.prevent="submit" action="">
             <h2>¿Cuáles son tus cursos favoritos?</h2>
-            <input v-model="cursos" type="checkbox" id="vue" value="vue">
-            <label for="vue">Curso de Vue.js</label>
-            <input v-model="cursos" type="checkbox" id="java" value="java">
-            <label for="java">Curso de java</label>
-            <input v-model="cursos" type="checkbox" id="express" value="express">
-            <label for="express">Curso de express</label>
-            <input v-model="cursos" type="checkbox" id="python" value="python">
-            <label for="python">Curso de python</label>
+            <template v-for="curso in cursos">
+                <input v-model="cursosSeleccionados" type="checkbox" v-bind:id="curso.value" v-bind:value="curso.value">
+                <label v-bind:for="curso.value"> {{ curso.nombre }} </label>
+            </template>
             <button type="submit">Enviar</button>
         </form>
     </div>
@@ -32,13 +25,17 @@
         let app = new Vue({
             el: '#app',
             data:{
-                nombre: '',
-                cursos: []
-            },
-            filters:{
-                uppercase: function (str) {
-                    return str.toUpperCase()
-                }
+                cursos: [
+                    {nombre: 'Curso de Introduccion a Vue.js',
+                        value: 'vue'},
+                    {nombre: 'Curso de Introduccion a Java',
+                        value: 'java'},
+                    {nombre: 'Curso de Introduccion a Express',
+                        value: 'express'},
+                    {nombre: 'Curso de Introduccion a Python',
+                        value: 'python'}
+                ],
+                cursosSeleccionados:[]
             },
             methods:{
                 submit: function(){
