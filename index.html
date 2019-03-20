@@ -10,20 +10,8 @@
 </head>
 <body>
     <div id="app">
-        <template v-if="mostrar">
-                <h1 >Este es mi título</h1>
-                <h2 >Este es mi subtítulo</h2>
-                <a  :href = "url" target="blank"> {{ pagina }}</a> 
-                <!-- Hola {{ nombre }}  -->
-        </template>
-
-        <div v-show="mostrar">
-                <h1 >Este es mi título</h1>
-                <h2 >Este es mi subtítulo</h2>
-                <a  :href = "url" target="_blank"> {{ pagina }}</a> 
-                <!-- Hola {{ nombre }}  -->
-        </div>
-
+        <h1 > {{ titulo | uppercase }} </h1>
+        <h2 > {{ subtitulo | lowercase}} </h2>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
@@ -31,10 +19,16 @@
         let app = new Vue({
             el: '#app',
             data:{
-                nombre: 'Fabián Camilo Jaramillo Ortiz',
-                url : 'https:/google.com',
-                pagina: 'Ir a Google',
-                mostrar: true
+                titulo: 'Este es mi título',
+                subtitulo: 'Este es mi subtítulo'
+            },
+            filters:{
+                uppercase: function(str){
+                    return str.toUpperCase()
+                },
+                lowercase: function(str){
+                    return str.toLowerCase()
+                }
             }
         })
     </script>
